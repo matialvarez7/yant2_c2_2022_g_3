@@ -3,7 +3,8 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import './assets/main.css'
 import Banner from './components/Banner.vue';
-import Login from './components/Login.vue'
+import Login from './components/Login.vue';
+import Register from './components/Register.vue';
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js"
 
@@ -11,7 +12,8 @@ import "bootstrap/dist/js/bootstrap.js"
 
 const routes = [
   {path: "/banner", component: Banner},
-  {path: "/login", component: Login}
+  {path: "/login", component: Login},
+  {path: "/register", component: Register}
 ]
 
 const router = new VueRouter({
