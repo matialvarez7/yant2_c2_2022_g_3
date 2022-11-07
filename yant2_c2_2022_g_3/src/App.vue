@@ -1,17 +1,29 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-import Banner from './components/Banner.vue'
+import { RouterLink } from 'vue-router';
+
 
 </script>
 
 <template>
   <div id="app">
-  
-
-    <main>
-      <Banner />
-    </main>
+    <div class="container text-center">
+      <div class="row">
+        <div class="col">
+          <router-link to = "/banner">Banner </router-link>
+      
+        </div>
+        <div class="col">
+          Column
+        </div>
+        <div class="col">
+          <router-link to = "/login">Login</router-link>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <router-view></router-view> 
   </div>
+ 
 </template>
 
