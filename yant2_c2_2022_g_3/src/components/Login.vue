@@ -1,5 +1,8 @@
 <template>
-<div class="tab-content">
+<div class="row text">
+    <div class="col-4">col-4</div>
+    <div class="col-4">
+      <div class=" tab-content">
   <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
     <form>
       <div class="text-center mb-3">
@@ -44,4 +47,13 @@
     </form>
   </div>
 </div>
+    </div>
+    <div class="col-4">col-4</div>
+  </div>
 </template>
+
+<style scoped>
+  .text {
+    color:rgb(245, 237, 237)
+  }
+</style>
