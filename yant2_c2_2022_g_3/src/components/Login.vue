@@ -1,6 +1,6 @@
 <template>
 <div class="row text">
-    <div class="col-4">col-4</div>
+    <div class="col-4"></div>
     <div class="col-4">
       <div class=" tab-content">
   <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
@@ -48,7 +48,7 @@
   </div>
 </div>
     </div>
-    <div class="col-4">col-4</div>
+    <div class="col-4"></div>
   </div>
 </template>
 
