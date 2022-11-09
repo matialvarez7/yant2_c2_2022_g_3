@@ -3,8 +3,9 @@
   <div
   class="bg-size"
   style="
-    background-image: url('public/fondo2.jpg');
+    background-image: url('/fondo2.jpg');
     height: 150vh; background-size:100% 100%;
+    background-repeat: repeat;
   "
 >
 
@@ -25,9 +26,9 @@
             Games
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Sports</a></li>
-            <li><a class="dropdown-item" href="#">Shooter</a></li>
+            <li><a v-for="(categ) in category" :key="categ.id" 
+            @click="goTo(categ.name)"
+            class="dropdown-item" style="cursor: pointer" >{{categ.name}}</a></li>
           </ul>
         </li>
         <!-- <li class="nav-item">
@@ -46,52 +47,58 @@
   </div>
     </nav>
       <br>
-  <p class="mainTitulo text-center display-2"><b> Vaporcito Games</b></p> 
-  <div class="row">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-6">
-    <div  id="carouselExampleDark" class="container carousel carousel-dark slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="4000">
-         <img src="/fortnite.jpg" class="d-block w-100" alt="accion">
-          <div class="carTitle carousel-caption d-none d-md-block">
-            <div class="parText"><u>Fortnite:</u> new update release will include two skins and two more weapons.</div>
-          </div>
-    </div>
-    <div class="carousel-item" data-bs-interval="4000">
-      <img src="/cuphead.jpg" class="d-block w-100" alt="deportes">
-      <div class="carTitle carousel-caption d-none d-md-block">
-        <div class="parText"><u>Cuphead 2 is here:</u> the last episode of this craziest game is up to come.</div>
-        <!-- <p>Soccer, tennis , football and more</p> -->
-      </div>
-    </div>
-    <div class="carousel-item" data-bs-interval="4000">
-      <img src="counter.jpg" class="d-block w-100" alt="shooter">
-      <div class="carTitle carousel-caption d-none d-md-block">
-        <div class="parText"><u>Summer tournament:</u>the new tournament of cs-go starts next week, with five new teams!</div>
-        <!-- <p>Best first person shooter games</p> -->
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<div class="col-sm-4"></div>
-</div>
-
+  
+  
   <router-view></router-view>
   <br>
 
+  <div class="footPers container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <p class="textFoot col-md-4 mb-0 text-muted">© 2022 Company, Inc</p>
+
+    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto ">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+    </a>
+
+    <ul class="nav col-md-4 justify-content-end">      
+      <li class="nav-item"><a href="#" class="textFoot nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><a href="#" class="textFoot nav-link px-2 text-muted">Features</a></li>
+      <li class="nav-item"><a href="#" class="textFoot nav-link px-2 text-muted">Pricing</a></li>
+      <li class="nav-item"><a href="#" class="textFoot nav-link px-2 text-muted">FAQs</a></li>
+      <li class="nav-item"><a href="#" class="textFoot nav-link px-2 text-muted">About</a></li>
+    </ul>
+  </footer>
+</div>
   </div>
   </div>
 </template>
 
+<script>
+export default {
+  data () {
+    return {
+      category: [],
+    }
+  },
+  methods: {
+    goTo(categoryName){    
+      this.$router.push(`/${categoryName}`)
+    }
+  },
+  created(){
+    this.category = [
+      {id:1,name:"Action"},
+      {id:2,name:"Sports"},
+      {id:3,name:"Shooter"},
+    ];
+  },
+};
+</script>
+
 
 <style scoped>
-.carousel {
-  width:100%;
-  height:100%;
-  margin-left: 8rem;
-}
+
+/* NavBar style */
 
 .textoNav {
   margin-right: 1rem;
@@ -115,6 +122,14 @@
  color: rgb(244, 28, 28);
 }
 
+/* Carousel style */
+
+.carousel {
+  width:100%;
+  height:100%;
+  margin-left: 8rem;
+}
+
 .carTitle {
   text-align: left;
   font-size: 2rem;
@@ -132,4 +147,22 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: rgb(196, 124, 41);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+
+/* Footer style */
+
+.footPers {
+  position: absolute;
+  left: 13rem;
+  top: 80rem;
+}
+
+a.textFoot {
+  color: rgb(255, 253, 251)!important;
+}
+
+p.textFoot {
+  color: rgb(255, 253, 251)!important;
+}
+
 </style>
