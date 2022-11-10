@@ -21,14 +21,20 @@
 
   <!-- Email input -->
                 <div class="form-outline mb-4">
-                    <input type="email" v-model="email" id="form3Example3" class="form-control" />
+                    <input type="email" v-model="email" class="form-control" />
                         <label class="form-label" for="form3Example3">Email address</label>
                 </div>
 
   <!-- Password input -->
                 <div class="form-outline mb-4">
-                    <input type="password" id="fPassw" class="form-control" />
+                    <input type="password"  v-model="fPassw" id="fPassw" class="form-control" />
                         <label class="form-label" for="fPass">Password</label>
+                </div>
+
+ <!-- Confirm Password input -->
+                <div class="form-outline mb-4">
+                    <input type="password"  v-model="fConfPassw" id="fConfPassw" class="form-control" />
+                        <label class="form-label" for="fConfPass" aria-placeholder="Confirm Password">Confirm Password</label>
                 </div>
 
                 <!-- Errors -->
@@ -38,14 +44,6 @@
                 <li v-for="error in errors" :key="error.id">{{ error }}</li>
                 </ul>
                 </p>
-
-  <!-- Checkbox -->
-                <!-- <div class="form-check d-flex justify-content-center mb-4">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                        <label class="form-check-label" for="form2Example33">
-                            Subscribe to our newsletter
-                        </label>
-                </div> -->
 
   <!-- Submit button -->
   <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
@@ -61,17 +59,28 @@ export default {
       email: null,
       firstName: null,
       lastName: null,
+      fPassw: null,
+      fConfPassw:null
     };
   },
   methods: {
-    formValidate: function (e) {
+    formValidate (e) {
       this.errors = [];
 
       if (!this.firstName) {
         this.errors.push("El nombre es obligatorio.");
       }
-      if (!this.firstName) {
+      if (!this.lastName) {
         this.errors.push("El apellido es obligatorio.");
+      }
+       if (!this.fPassw) {
+        this.errors.push("La password es obligatorio.");
+      }
+      if (!this.fConfPassw) {
+        this.errors.push("Debe ingresar la confirmación de la password");
+      }
+       if (this.fConfPassw != this.fPassw) {
+        this.errors.push("La password y la confirmación no coinciden");
       }
       if (!this.email) {
         this.errors.push("El correo electrónico es obligatorio.");
