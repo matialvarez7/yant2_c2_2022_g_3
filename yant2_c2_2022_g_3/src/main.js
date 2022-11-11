@@ -11,7 +11,9 @@ import Register from './components/Register.vue';
 import Home from './components/Home.vue'
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js"
-
+import {PiniaVuePlugin,createPinia} from 'pinia'
+Vue.use(PiniaVuePlugin)
+const pinia = createPinia()
 //SweetAlert
 
 import VueSweetalert2 from 'vue-sweetalert2';
@@ -41,5 +43,6 @@ Vue.use(VueRouter)
 new Vue({
   router,
   routes,
+  pinia,
   render: (h) => h(App)
 }).$mount('#app')

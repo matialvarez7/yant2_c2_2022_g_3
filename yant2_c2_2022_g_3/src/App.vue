@@ -35,9 +35,11 @@
           <a class="nav-link disabled">Disabled</a>
         </li> -->
       </ul>
-      <router-link to='/login'><button type="button" class="login btn btn-primary">
-      Login    
-      </button></router-link>  
+      <router-link to='/login'>
+      <button v-if="store.authLogin" type="button" class="login btn btn-primary">Login</button></router-link>
+      <router-link to='/'>
+      <button @click="logout()" v-if="!(store.authLogin)"  type="button" class="login btn btn-primary">Logout</button>
+        </router-link>
       <!-- <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
@@ -47,8 +49,7 @@
   </div>
     </nav>
       <br>
-  
-  
+  <div v-if="!(store.authLogin)"><app-userLogued></app-userLogued></div>
   <router-view></router-view>
   <br>
 
@@ -74,7 +75,16 @@
 </template>
 
 <script>
+import userLogued from './components/userLogued.vue';
+import { storeUser } from './store'
 export default {
+  setup() {
+    const store = storeUser()
+    return {store} 
+  },
+  components: {
+      'app-userLogued': userLogued
+  },
   data () {
     return {
       category: [],
@@ -83,6 +93,9 @@ export default {
   methods: {
     goTo(categoryName){    
       this.$router.push(`/${categoryName}`)
+    },
+    logout(){
+        this.store.changeAuthLog()
     }
   },
   created(){
