@@ -33,7 +33,7 @@
       <router-link to='/login'>
       <button v-if="store.authLogin" type="button" class="login btn btn-primary">Login</button></router-link>
       <router-link to='/'>
-      <button @click="logout()" v-if="!(store.authLogin)"  type="button" class="login btn btn-primary">Logout</button>
+      <a @click="goTo(game.id)"><button @click="logout()" v-if="!(store.authLogin)"  type="button" class="login btn btn-primary">Logout</button></a>
         </router-link>
       <!-- <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

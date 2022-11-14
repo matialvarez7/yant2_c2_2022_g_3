@@ -8,7 +8,7 @@
       <img :src="game.image" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{game.title}}</h5>
-        <p class="card-text">{{game.desc}}</p>
+       <a @click="goTo(game.id)">Comprar</a>
       </div>
     </div>
   </div>
@@ -32,9 +32,9 @@ export default {
     }
   },
   methods: {
-    // goTo(categoryName){
-    //   this.$router.push(`/${categoryName}`)
-    // }
+    goTo(id){
+      this.$router.push(`/${id}`)
+    }
   },
   created(){
     this.games = [
