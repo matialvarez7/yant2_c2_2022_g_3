@@ -11,16 +11,13 @@
 
   <div id="app">
     <nav class="container navbar navbar-expand-lg bg-dark">
-  <div class="container-fluid">
+      <div class="container-fluid">
     <div class="textoNav">Vaporcito</div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#">Juegos</a>
-        </li> -->
         <li class="nav-item dropdown">
           <a class="desplegable nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Games
@@ -31,9 +28,7 @@
             class="dropdown-item" style="cursor: pointer" >{{categ.name}}</a></li>
           </ul>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li> -->
+       
       </ul>
       <router-link to='/login'>
       <button v-if="store.authLogin" type="button" class="login btn btn-primary">Login</button></router-link>
@@ -49,11 +44,17 @@
   </div>
     </nav>
       <br>
-  <div v-if="!(store.authLogin)"><app-userLogued></app-userLogued></div>
-  <router-view></router-view>
-  <br>
 
+   <div class="container-fluid"> 
+    <div class="row"> 
+  <div class="sidebar col-3" v-if="!(store.authLogin)"><app-userLogued></app-userLogued></div>
+  
+  <div class="col-6"><router-view></router-view></div>
+  </div>
+  <br>
+  </div>
   <div class="footPers container">
+
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <p class="textFoot col-md-4 mb-0 text-muted">© 2022 Company, Inc</p>
 
@@ -110,6 +111,11 @@ export default {
 
 
 <style scoped>
+/* SideBar 
+.sidebar {
+   position: absolute;
+  top: 200px; 
+} */
 
 /* NavBar style */
 
@@ -137,11 +143,11 @@ export default {
 
 /* Carousel style */
 
-.carousel {
+/* .carousel {
   width:100%;
-  height:100%;
+  height:100%; 
   margin-left: 8rem;
-}
+} */
 
 .carTitle {
   text-align: left;

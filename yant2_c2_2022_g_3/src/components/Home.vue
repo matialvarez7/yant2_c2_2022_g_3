@@ -1,8 +1,9 @@
 <template>
  
- <div class="row">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-6">
+ <!-- <div class="row">
+  <div class="col-2"></div>
+  <div class="col-4"> -->
+    <div>
     <p class="mainTitulo display-2"><b>Vaporcito Games</b></p>
     <div id="mainCarousel" class="container carousel carousel-dark slide" data-bs-ride="carousel">
       <div class="carousel-inner">
@@ -28,13 +29,13 @@
     </div>
   </div>
 </div>
-</div>
-<div class="col-sm-4"></div><br><br>
+<!-- </div> -->
+<!-- <div class="col-6"></div><br><br> -->
 
 
   
-  <div class="col-sm-2"></div>
-  <div class="col-sm-4"><br>
+  <!-- <div class="col-sm-2"></div>
+  <div class="col-sm-4"><br> -->
     <p class="mainCateogry display-4"><b>Category</b></p>
     <div id="carouselCategory" class="carousel carousel-dark slide" data-bs-ride="carousel">
   <div class="carrInd carousel-indicators">
@@ -46,19 +47,19 @@
     <div class="carousel-item active" data-bs-interval="10000">
       <img src="/carrAcc.jpg" class="d-block w-100" alt="accion">
       <div class="carTitle carousel-caption d-none d-md-block">
-       <p>Action games</p>
+        <a @click="goTo('action')">Action games</a>
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="2000">
       <img src="/carrDep.jpg" class="d-block w-100" alt="deportes">
       <div class="carTitle carousel-caption d-none d-md-block">
-        <p>Sports games</p>
+         <a @click="goTo('sports')">Sports games</a>
       </div>
     </div>
     <div class="carousel-item">
       <img src="carrShooter.jpg" class="d-block w-100" alt="shooter">
-      <div class="carTitle carousel-caption d-none d-md-block">
-        <p>Shooter games</p>
+      <div class="carTitle carousel-caption d-none d-md-block" >
+        <a @click="goTo('shooter')">Shooter games</a>
       </div>
     </div>
   </div>
@@ -72,19 +73,35 @@
   </button>
 </div>
 </div>
-<div class="col-sm-6"></div>
-</div>
+<!-- <div class="col-sm-6"></div> -->
+<!-- </div> -->
 </template>
 
-
+<script>
+export default {
+ data (){
+    return {
+      
+    }
+  },
+  methods: {
+    goTo (category){
+      this.$router.push(`/${category}`)
+    }
+  },
+}
+</script>
 
 <style scoped> 
 
-#mainCarousel {
-  width:100%;
-  height:100%;
-  margin-left: 8rem;
-}
+ #mainCarousel {
+  width:900px;
+  height:500px;
+  position: absolute;
+  top: 190px;
+  left: 460px;
+} 
+
 
 .carrMainTitle {
   text-align: left;
@@ -110,8 +127,9 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 .mainTitulo {
   color: rgb(255, 253, 251);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  text-align: center;
-  margin-left: 10rem;
+  position: absolute;
+  top: 70px;
+  left: 600px;
 }
 
 /* Style Carousel Category */
@@ -130,6 +148,7 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color:rgb(217, 215, 215);
   position: absolute;
   bottom: 110px;
+  cursor: pointer
 }
 
 .carrBot {

@@ -14,7 +14,6 @@ export const storeUser = defineStore('stUs',{
             } else {
                 this.userAuth = true
             }
-            
         }
     }
 });
