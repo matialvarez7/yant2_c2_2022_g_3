@@ -23,7 +23,7 @@
             Games
           </a>
           <ul class="dropdown-menu">
-            <li><a v-for="(categ) in category" :key="categ.id" 
+            <li><a v-for="(categ) in store.category" :key="categ.id" 
             @click="goTo(categ.name)"
             class="dropdown-item" style="cursor: pointer" >{{categ.name}}</a></li>
           </ul>
@@ -33,12 +33,8 @@
       <router-link to='/login'>
       <button v-if="store.authLogin" type="button" class="login btn btn-primary">Login</button></router-link>
       <router-link to='/'>
-      <a @click="goTo(game.id)"><button @click="logout()" v-if="!(store.authLogin)"  type="button" class="login btn btn-primary">Logout</button></a>
+      <button @click="logout()" v-if="!(store.authLogin)"  type="button" class="login btn btn-primary">Logout</button>
         </router-link>
-      <!-- <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> -->
     </div>
 
   </div>
@@ -53,9 +49,9 @@
   </div>
   <br>
   </div>
-  <div class="footPers container">
 
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+  <div class="footPers container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <p class="textFoot col-md-4 mb-0 text-muted">© 2022 Company, Inc</p>
 
     <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto ">
@@ -70,7 +66,8 @@
       <li class="nav-item"><a href="#" class="textFoot nav-link px-2 text-muted">About</a></li>
     </ul>
   </footer>
-</div>
+    </div>
+
   </div>
   </div>
 </template>
@@ -78,6 +75,7 @@
 <script>
 import userLogued from './components/userLogued.vue';
 import { storeUser } from './store'
+
 export default {
   setup() {
     const store = storeUser()
@@ -100,11 +98,12 @@ export default {
     }
   },
   created(){
-    this.category = [
-      {id:1,name:"Action"},
-      {id:2,name:"Sports"},
-      {id:3,name:"Shooter"},
-    ];
+  //  this.category = this.store.category
+    // this.category = [
+    //   {id:1,name:"Action"},
+    //   {id:2,name:"Sports"},
+    //   {id:3,name:"Shooter"},
+    // ];
   },
 };
 </script>
@@ -116,6 +115,8 @@ export default {
    position: absolute;
   top: 200px; 
 } */
+
+
 
 /* NavBar style */
 
@@ -142,12 +143,6 @@ export default {
 }
 
 /* Carousel style */
-
-/* .carousel {
-  width:100%;
-  height:100%; 
-  margin-left: 8rem;
-} */
 
 .carTitle {
   text-align: left;

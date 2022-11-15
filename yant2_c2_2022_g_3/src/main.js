@@ -10,6 +10,9 @@ import Login from './components/Login.vue';
 import Register from './components/Register.vue';
 import Home from './components/Home.vue'
 import ActionBuy from './components/ActionBuy.vue'
+
+
+
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js"
 import {PiniaVuePlugin,createPinia} from 'pinia'
@@ -26,15 +29,18 @@ Vue.use(VueSweetalert2);
 
 const routes = [
   {path: "/", component: Home},
-  {path: "/action", component: Action,
-  children: [{path: ':id',component: ActionBuy}]
+  {path: "/action", component: Action
+  // children: [{path: ':id',component: ActionBuy}]
     },
+  {path: "/actionbuy", component: ActionBuy},
   {path: "/banner", component: Banner},
   {path: "/login", component: Login},
   {path: "/register", component: Register},
   {path: "/shooter", component: Shooter},
   {path: "/sports", component: Sports},
+  {path:'*', redirect: '/'}
 ]
+
 //hay un atributo llamado "redirect", para redireccionar
 
 const router = new VueRouter({

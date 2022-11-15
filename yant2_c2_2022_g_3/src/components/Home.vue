@@ -43,23 +43,23 @@
     <button type="button" data-bs-target="#carouselCategory" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselCategory" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
-  <div class="carousel-inner">
+  <div  class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="10000">
       <img src="/carrAcc.jpg" class="d-block w-100" alt="accion">
       <div class="carTitle carousel-caption d-none d-md-block">
-        <a @click="goTo('action')">Action games</a>
+        <a @click="goTo(action.name)">Action games</a>
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="2000">
       <img src="/carrDep.jpg" class="d-block w-100" alt="deportes">
       <div class="carTitle carousel-caption d-none d-md-block">
-         <a @click="goTo('sports')">Sports games</a>
+         <a @click="goTo(sports.name)">Sports games</a>
       </div>
     </div>
     <div class="carousel-item">
       <img src="carrShooter.jpg" class="d-block w-100" alt="shooter">
       <div class="carTitle carousel-caption d-none d-md-block" >
-        <a @click="goTo('shooter')">Shooter games</a>
+        <a @click="goTo(shooter.name)">Shooter games</a>
       </div>
     </div>
   </div>
@@ -78,10 +78,18 @@
 </template>
 
 <script>
+import { storeUser } from '../store'
+
 export default {
+  setup() {
+    const store = storeUser()
+    return {store} 
+  },
  data (){
-    return {
-      
+    return { 
+     action: this.store.category[0],
+     sports: this.store.category[1],
+     shooter: this.store.category[2]
     }
   },
   methods: {

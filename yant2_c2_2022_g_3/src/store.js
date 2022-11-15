@@ -2,18 +2,20 @@ import { defineStore} from "pinia";
 
 export const storeUser = defineStore('stUs',{
     state: () => ({
-        userAuth:true
+        userAuth:true,
+        category: [
+            {id:1,name:"Action"},
+            {id:2,name:"Sports"},
+            {id:3,name:"Shooter"},
+            ]
     }),
     getters:{
         authLogin:(state) => state.userAuth,
+        getCategory:(state) => state.category
     },
     actions:{
         changeAuthLog () {
-            if(this.userAuth){
-                this.userAuth = false;
-            } else {
-                this.userAuth = true
-            }
+            this.userAuth = !this.userAuth
         }
     }
 });
