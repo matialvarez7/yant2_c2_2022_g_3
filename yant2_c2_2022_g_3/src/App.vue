@@ -49,7 +49,6 @@
   </div>
   <br>
   </div>
-
   <div class="footPers container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <p class="textFoot col-md-4 mb-0 text-muted">© 2022 Company, Inc</p>
@@ -66,8 +65,7 @@
       <li class="nav-item"><a href="#" class="textFoot nav-link px-2 text-muted">About</a></li>
     </ul>
   </footer>
-    </div>
-
+</div>
   </div>
   </div>
 </template>
@@ -75,7 +73,6 @@
 <script>
 import userLogued from './components/userLogued.vue';
 import { storeUser } from './store'
-
 export default {
   setup() {
     const store = storeUser()
@@ -115,8 +112,6 @@ export default {
    position: absolute;
   top: 200px; 
 } */
-
-
 
 /* NavBar style */
 
