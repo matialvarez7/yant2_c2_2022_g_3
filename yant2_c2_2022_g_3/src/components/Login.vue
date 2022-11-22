@@ -51,6 +51,12 @@
     </div>
     <div class="col-4"></div>
 
+    <ul class="text">
+      <li v-for="(user) in store.users" :key="user.id">
+        {{ user.firstName }}
+      </li>
+    </ul>
+
 
   <!-- Errors -->
                 <p v-if="errors.length">
@@ -79,11 +85,11 @@ export default {
   data() {
     return {
       errors: [],
-      users: [
-        {id:1,user:"Eze",password:"Ezequiel89"},
-        {id:2,user:"Matias",password:"Matias92"},
-        {id:3,user:"Brian",password:"Brian95"}
-      ],
+      // users: [
+      //   {id:1,user:"Eze",password:"Ezequiel89"},
+      //   {id:2,user:"Matias",password:"Matias92"},
+      //   {id:3,user:"Brian",password:"Brian95"}
+      // ],
       userName: null,
       userPass:null
     }
@@ -113,6 +119,9 @@ export default {
       const result = this.users.find(elem => (elem.user == name && elem.password == pass))
       return result
       }
+  },
+  async created () {
+    await this.store.initUsers()
   }
 }
 </script>
