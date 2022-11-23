@@ -40,14 +40,22 @@
   </div>
     </nav>
       <br>
-
+    
    <div class="container-fluid"> 
     <div class="row"> 
   <div class="sidebar col-3" v-if="!(store.authLogin)"><app-userLogued></app-userLogued></div>
   
   <div class="col-6"><router-view></router-view></div>
+  
   </div>
   <br>
+<div>
+<ul>
+      <li v-for="user in userList" :key="user.id" class="desplegable">
+        {{ user.firstName }}
+      </li>
+    </ul>
+</div>
   </div>
   <div class="footPers container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -56,7 +64,7 @@
     <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto ">
       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
     </a>
-
+  
     <ul class="nav col-md-4 justify-content-end">      
       <li class="nav-item"><a href="#" class="textFoot nav-link px-2 text-muted">Home</a></li>
       <li class="nav-item"><a href="#" class="textFoot nav-link px-2 text-muted">Features</a></li>
@@ -72,11 +80,11 @@
 
 <script>
 import userLogued from './components/userLogued.vue';
-import { storeUser } from './store'
+import { myStore }  from './store'
 export default {
   setup() {
-    const store = storeUser()
-    return {store} 
+    const store = myStore()
+    return { store } 
   },
   components: {
       'app-userLogued': userLogued
@@ -84,6 +92,7 @@ export default {
   data () {
     return {
       category: [],
+      userList: []
     }
   },
   methods: {
@@ -92,15 +101,21 @@ export default {
     },
     logout(){
         this.store.changeAuthLog()
+    },
+    async getUsers(){
+    const usersFetch = await fetch('https://www.mockachino.com/5845c627-4a5c-41/users');
+    const data = await usersFetch.json();
+    this.userList = data.users;
     }
   },
-  created(){
+  mounted(){
   //  this.category = this.store.category
     // this.category = [
     //   {id:1,name:"Action"},
     //   {id:2,name:"Sports"},
     //   {id:3,name:"Shooter"},
     // ];
+   this.getUsers()
   },
 };
 </script>

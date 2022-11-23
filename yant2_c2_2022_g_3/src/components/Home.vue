@@ -78,11 +78,11 @@
 </template>
 
 <script>
-import { storeUser } from '../store'
+import { myStore } from '../store'
 
 export default {
   setup() {
-    const store = storeUser()
+    const store = myStore()
     return {store} 
   },
  data (){

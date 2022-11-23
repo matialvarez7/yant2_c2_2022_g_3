@@ -43,7 +43,7 @@
 
       <!-- Register buttons -->
       <div class="text-center">
-        <p>Not a member? <router-link to = "/register">Register</router-link></p>
+        <p>Not a member? <router-link to ="/register">Register</router-link></p>
       </div>
     </form>
   </div>
@@ -51,13 +51,7 @@
     </div>
     <div class="col-4"></div>
 
-    <ul class="text">
-      <li v-for="(user) in store.users" :key="user.id">
-        {{ user.firstName }}
-      </li>
-    </ul>
-
-
+    
   <!-- Errors -->
                 <p v-if="errors.length">
                 <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
@@ -76,10 +70,10 @@
 </style>
 
 <script>
-import { storeUser } from '../store'
+import { myStore } from '../store'
 export default {
   setup() {
-    const store = storeUser()
+    const store = myStore()
     return {store} 
   },
   data() {
@@ -120,8 +114,5 @@ export default {
       return result
       }
   },
-  async created () {
-    await this.store.initUsers()
-  }
 }
 </script>
