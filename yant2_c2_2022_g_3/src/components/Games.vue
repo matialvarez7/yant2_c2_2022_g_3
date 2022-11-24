@@ -8,7 +8,7 @@
           <img :src="game.image" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">{{ game.title }}</h5>
-            <button class="login btn btn-success" @click="goTo(game.id)" style="cursor: pointer">Comprar</button><hr>
+            <button class="login btn btn-success" @click="verifyPurchase(game)" style="cursor: pointer">Comprar</button><hr>
             <h6 class="card-title">Puntaje: {{ game.raiting }}</h6>
           </div>
         </div>
@@ -42,8 +42,16 @@ export default {
     };
   },
   methods: {
-    goTo(id) {
-      this.$router.push(`/actionbuy`);
+    verifyPurchase(game) {
+      if(!(this.store.logued))
+        this.$swal(
+  'User not logued',
+  'You must to login in order to buy',
+  'warning'
+)
+        this.$router.push(`/login`);
+
+
     },
   },
   // created(){
