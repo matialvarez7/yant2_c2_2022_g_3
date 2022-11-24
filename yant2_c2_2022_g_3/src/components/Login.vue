@@ -106,7 +106,14 @@ export default {
       }
 
       if (!this.errors.length) {
-        this.$swal("Success!!!");
+        
+        this.$swal({
+  position: 'top-end',
+  icon: 'success',
+  title: 'Login Success',
+  showConfirmButton: false,
+  timer: 1500
+})
         // this.store.changeAuthLog();
         this.$router.push("/");
       }

@@ -8,7 +8,24 @@
           <img :src="game.image" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">{{ game.title }}</h5>
-            <button class="login btn btn-success" @click="verifyPurchase(game)" style="cursor: pointer">Comprar</button><hr>
+            <button
+              class="login btn btn-success"
+              @click="verifyPurchase(game)"
+              style="cursor: pointer"
+              v-if="!checkUserGame(game)"
+            >
+              Comprar
+            </button>
+            <button
+              type="button"
+              class="login btn btn-outline-success"
+              disabled
+              v-else
+            >
+              ¡Comprado!
+            </button>
+
+            <hr />
             <h6 class="card-title">Puntaje: {{ game.raiting }}</h6>
           </div>
         </div>
@@ -26,6 +43,7 @@ h2 {
 .tarjetitas {
   position: relative;
   left: 400px;
+   
 }
 </style>
 
@@ -43,15 +61,22 @@ export default {
   },
   methods: {
     verifyPurchase(game) {
-      if(!(this.store.logued))
+      if (!this.store.logued) {
         this.$swal(
-  'User not logued',
-  'You must to login in order to buy',
-  'warning'
-)
+          "User not logued",
+          "You must to login in order to buy",
+          "warning"
+        );
         this.$router.push(`/login`);
-
-
+      }
+    },
+    checkUserGame(game) {
+      let gameFound = null;
+      if (this.store.userLogued) {
+        const userGames = this.store.userLogued.juegos;
+        gameFound = userGames.find((g) => g.id === game.id);
+      }
+      return gameFound;
     },
   },
   // created(){
