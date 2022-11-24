@@ -2,14 +2,14 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 // import './assets/main.css'
-import Action from './components/Action.vue';
-import Sports from './components/Sports.vue';
-import Shooter from './components/Shooter.vue';
+// import Action from './components/Action.vue';
+// import Sports from './components/Sports.vue';
+import Games from './components/Games.vue';
 import Banner from './components/Banner.vue';
 import Login from './components/Login.vue';
 import Register from './components/Register.vue';
 import Home from './components/Home.vue'
-import ActionBuy from './components/ActionBuy.vue'
+// import ActionBuy from './components/ActionBuy.vue'
 
 
 
@@ -29,15 +29,13 @@ Vue.use(VueSweetalert2);
 
 const routes = [
   {path: "/", component: Home},
-  {path: "/action", component: Action
-  // children: [{path: ':id',component: ActionBuy}]
-    },
-  {path: "/actionbuy", component: ActionBuy},
+  {path: "/games", component: Games},
+  // {path: "/actionbuy", component: ActionBuy},
   {path: "/banner", component: Banner},
   {path: "/login", component: Login},
   {path: "/register", component: Register},
-  {path: "/shooter", component: Shooter},
-  {path: "/sports", component: Sports},
+  // {path: "/shooter", component: Shooter},
+  // {path: "/sports", component: Sports},
   {path:'*', redirect: '/'}
 ]
 

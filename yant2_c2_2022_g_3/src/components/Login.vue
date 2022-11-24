@@ -52,29 +52,30 @@
     <div class="col-4"></div>
 
     
-  <!-- Errors -->
-                <p v-if="errors.length">
-                <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
-                <ul>
-                <li v-for="error in errors" :key="error.id">{{ error }}</li>
-                </ul>
-                </p>
-
+                <!-- Errors -->
+      <div>
+         <p v-if="errors.length">
+        <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
+        <ul>
+          <li v-for="error in errors" :key="error.id">{{ error }}</li>
+        </ul>
+        </p>
+      </div>
   </div>
 </template>
 
 <style scoped>
-  .text {
-    color:rgb(245, 237, 237)
-  }
+.text {
+  color: rgb(245, 237, 237);
+}
 </style>
 
 <script>
-import { myStore } from '../store'
+import { myStore } from "../store";
 export default {
   setup() {
-    const store = myStore()
-    return {store} 
+    const store = myStore();
+    return { store };
   },
   data() {
     return {
@@ -85,11 +86,11 @@ export default {
       //   {id:3,user:"Brian",password:"Brian95"}
       // ],
       userName: null,
-      userPass:null
-    }
+      userPass: null,
+    };
   },
   methods: {
-    loginValidate (){
+    loginValidate() {
       this.errors = [];
       if (!this.userName) {
         this.errors.push("El nombre es obligatorio.");
@@ -97,22 +98,27 @@ export default {
       if (!this.userPass) {
         this.errors.push("Password is required");
       }
-      if(!this.userValid(this.userName,this.userPass)){
-        this.errors.push("User name or password incorrect")
+      //Verifico si existe el usuario con el username y pass ingresados, y lo guardo en store.userLogued 
+      //sino existe, quedara un objeto vacio
+      this.store.userLogued = this.userValid(this.userName, this.userPass)
+      if (!this.store.userLogued) {
+        this.errors.push("User name or password incorrect");
       }
-      
+
       if (!this.errors.length) {
-        this.$swal('Success!!!')
+        this.$swal("Success!!!");
         this.store.changeAuthLog();
         this.$router.push("/");
-        }
-
-        e.preventDefault();
-    }, 
-    userValid (name,pass) {
-      const result = this.users.find(elem => (elem.user == name && elem.password == pass))
-      return result
       }
+
+      // e.preventDefault();
+    },
+    userValid(name, pass) {
+      const result = this.store.users.find(
+        (elem) => elem.email == name && elem.password == pass
+      );
+      return result;
+    },
   },
-}
+};
 </script>

@@ -16,17 +16,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
+          <router-link class="nav-link active" aria-current="page" to="/" style="cursor: pointer">Home</router-link>
         </li>
         <li class="nav-item dropdown">
-          <a class="desplegable nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="desplegable nav-link" role="button"  aria-expanded="false"  @click="goTo('games')">
             Games
           </a>
-          <ul class="dropdown-menu">
+          <!-- <ul class="dropdown-menu">
             <li><a v-for="(categ) in store.category" :key="categ.id" 
-            @click="goTo(categ.name)"
-            class="dropdown-item" style="cursor: pointer" >{{categ.name}}</a></li>
-          </ul>
+            @click="goTo('games')"
+            class="dropdown-item" style="cursor: pointer" >Games</a></li>
+          </ul> -->
         </li>
        
       </ul>
@@ -40,6 +40,22 @@
   </div>
     </nav>
       <br>
+
+      <!-- <div>
+      <ul>
+      <li v-for="user in store.users" :key="user.id" class="desplegable" >
+          {{user.firstName}}
+      </li>
+      </ul>
+      </div>
+
+      <div>
+      <ul>
+      <li v-for="game in store.games" :key="game.id" class="desplegable" >
+          {{game.image}}
+      </li>
+      </ul>
+      </div> -->
     
    <div class="container-fluid"> 
     <div class="row"> 
@@ -49,13 +65,8 @@
   
   </div>
   <br>
-<div>
-<ul>
-      <li v-for="user in userList" :key="user.id" class="desplegable">
-        {{ user.firstName }}
-      </li>
-    </ul>
-</div>
+
+
   </div>
   <div class="footPers container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -92,7 +103,7 @@ export default {
   data () {
     return {
       category: [],
-      userList: []
+      
     }
   },
   methods: {
@@ -100,12 +111,17 @@ export default {
       this.$router.push(`/${categoryName}`)
     },
     logout(){
+        this.store.userLogued = {},
         this.store.changeAuthLog()
+        console.log(this.store.userLogued);
     },
-    async getUsers(){
-    const usersFetch = await fetch('https://www.mockachino.com/5845c627-4a5c-41/users');
-    const data = await usersFetch.json();
-    this.userList = data.users;
+    async initUsersGames(){
+    const usersFetch = await fetch('https://www.mockachino.com/6301ff69-f7fa-4e/users');
+    const gamesFetch = await fetch('https://www.mockachino.com/6301ff69-f7fa-4e/games')
+    const usersData = await usersFetch.json();
+    const gamesData = await gamesFetch.json();
+    this.store.usersList = usersData.users;
+    this.store.gamesList = gamesData.games;
     }
   },
   mounted(){
@@ -115,7 +131,7 @@ export default {
     //   {id:2,name:"Sports"},
     //   {id:3,name:"Shooter"},
     // ];
-   this.getUsers()
+   this.initUsersGames()
   },
 };
 </script>
