@@ -31,9 +31,9 @@
        
       </ul>
       <router-link to='/login'>
-      <button v-if="store.authLogin" type="button" class="login btn btn-primary">Login</button></router-link>
+      <button v-if="!(store.logued)" type="button" class="login btn btn-primary">Login</button></router-link>
       <router-link to='/'>
-      <button @click="logout()" v-if="!(store.authLogin)"  type="button" class="login btn btn-primary">Logout</button>
+      <button @click="logout()" v-if="(store.logued)"  type="button" class="login btn btn-primary">Logout</button>
         </router-link>
     </div>
 
@@ -59,13 +59,12 @@
     
    <div class="container-fluid"> 
     <div class="row"> 
-  <div class="sidebar col-3" v-if="!(store.authLogin)"><app-userLogued></app-userLogued></div>
+  <div class="sidebar col-3" v-if="(store.logued)"><app-userLogued></app-userLogued></div>
   
   <div class="col-6"><router-view></router-view></div>
   
   </div>
   <br>
-
 
   </div>
   <div class="footPers container">
@@ -102,8 +101,7 @@ export default {
   },
   data () {
     return {
-      category: [],
-      
+      // category: [],
     }
   },
   methods: {
@@ -111,8 +109,7 @@ export default {
       this.$router.push(`/${categoryName}`)
     },
     logout(){
-        this.store.userLogued = {},
-        this.store.changeAuthLog()
+        this.store.userLogued = null,
         console.log(this.store.userLogued);
     },
     async initUsersGames(){

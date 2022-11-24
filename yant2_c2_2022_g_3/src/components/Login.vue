@@ -107,7 +107,7 @@ export default {
 
       if (!this.errors.length) {
         this.$swal("Success!!!");
-        this.store.changeAuthLog();
+        // this.store.changeAuthLog();
         this.$router.push("/");
       }
 
