@@ -43,7 +43,6 @@ h2 {
 .tarjetitas {
   position: relative;
   left: 400px;
-   
 }
 </style>
 
@@ -68,6 +67,9 @@ export default {
           "warning"
         );
         this.$router.push(`/login`);
+      } else {
+        this.saveGame(game);
+
       }
     },
     checkUserGame(game) {
@@ -77,6 +79,19 @@ export default {
         gameFound = userGames.find((g) => g.id === game.id);
       }
       return gameFound;
+    },
+    async saveGame(game) {
+      let userGames = this.store.logued.juegos
+      userGames.push(game)
+      await fetch(`https://6380052d2f8f56e28e9a442f.mockapi.io/users/${this.store.logued.id}`, {
+        method: "PUT",
+        body: JSON.stringify({
+        juegos: userGames,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
     },
   },
   // created(){

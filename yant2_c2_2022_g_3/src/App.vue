@@ -113,12 +113,12 @@ export default {
         console.log(this.store.userLogued);
     },
     async initUsersGames(){
-    const usersFetch = await fetch('https://www.mockachino.com/6301ff69-f7fa-4e/users');
-    const gamesFetch = await fetch('https://www.mockachino.com/6301ff69-f7fa-4e/games')
+    const usersFetch = await fetch('https://6380052d2f8f56e28e9a442f.mockapi.io/users');
+    const gamesFetch = await fetch('https://6380052d2f8f56e28e9a442f.mockapi.io/games')
     const usersData = await usersFetch.json();
     const gamesData = await gamesFetch.json();
-    this.store.usersList = usersData.users;
-    this.store.gamesList = gamesData.games;
+    this.store.usersList = usersData;
+    this.store.gamesList = gamesData;
     }
   },
   mounted(){

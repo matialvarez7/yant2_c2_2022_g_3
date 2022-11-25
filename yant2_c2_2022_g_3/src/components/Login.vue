@@ -80,11 +80,6 @@ export default {
   data() {
     return {
       errors: [],
-      // users: [
-      //   {id:1,user:"Eze",password:"Ezequiel89"},
-      //   {id:2,user:"Matias",password:"Matias92"},
-      //   {id:3,user:"Brian",password:"Brian95"}
-      // ],
       userName: null,
       userPass: null,
     };
