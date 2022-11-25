@@ -73,6 +73,7 @@ export default {
       game.raiting = parseInt(this.puntaje[id], 10);
       let userGames = this.store.logued.juegos;
       this.store.updateBase(userGames)
+      this.store.updateRaitingGame(game.id)
     },
     emptyGames () {
       return (this.store.logued.juegos).length === 0
