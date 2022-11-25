@@ -9,7 +9,7 @@ import Banner from './components/Banner.vue';
 import Login from './components/Login.vue';
 import Register from './components/Register.vue';
 import Home from './components/Home.vue'
-// import ActionBuy from './components/ActionBuy.vue'
+import UserGames from './components/UserGames.vue'
 
 
 
@@ -30,12 +30,10 @@ Vue.use(VueSweetalert2);
 const routes = [
   {path: "/", component: Home},
   {path: "/games", component: Games},
-  // {path: "/actionbuy", component: ActionBuy},
   {path: "/banner", component: Banner},
   {path: "/login", component: Login},
   {path: "/register", component: Register},
-  // {path: "/shooter", component: Shooter},
-  // {path: "/sports", component: Sports},
+  {path:"/usergames",component:UserGames},
   {path:'*', redirect: '/'}
 ]
 
