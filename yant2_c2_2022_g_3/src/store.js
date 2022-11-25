@@ -18,8 +18,23 @@ export const myStore = defineStore('stUs',{
         logued:(state) => state.userLogued,
     },
     actions:{
-        // changeAuthLog () {
-        //     this.userAuth = !this.userAuth
-        // }
+        changeAuthLog () {
+            this.userLogued = !this.userLogued
+        },
+        async updateBase(userGames){
+            await fetch(
+                `https://6380052d2f8f56e28e9a442f.mockapi.io/users/${this.logued.id}`,
+                {
+                  method: "PUT",
+                  body: JSON.stringify({
+                    juegos: userGames,
+                  }),
+                  headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                  },
+                }
+              );
+        },
+        
     }
 });

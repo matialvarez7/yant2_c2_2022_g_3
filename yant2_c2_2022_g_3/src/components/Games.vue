@@ -69,7 +69,11 @@ export default {
         this.$router.push(`/login`);
       } else {
         this.saveGame(game);
-
+        this.$swal(
+          "Successful purchase!!",
+          "Thank you!!",
+          "success"
+        );
       }
     },
     checkUserGame(game) {
@@ -81,29 +85,12 @@ export default {
       return gameFound;
     },
     async saveGame(game) {
-      let userGames = this.store.logued.juegos
-      userGames.push(game)
-      await fetch(`https://6380052d2f8f56e28e9a442f.mockapi.io/users/${this.store.logued.id}`, {
-        method: "PUT",
-        body: JSON.stringify({
-        juegos: userGames,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      });
+      let uGame = {...game} //creamos la copia del juego original
+      uGame.raiting = 0 //seteamos el ranking en 0
+      let userGames = this.store.logued.juegos //nos traemos los juegos del ususario
+      userGames.push(uGame)  //guardamos el nuevo juego
+      await this.store.updateBase(userGames) //actualizamos la base
     },
   },
-  // created(){
-  //   this.games = [
-  //     {id:1,image:"/counter.jpg",title:"Counter",desc:"amazing game of all times",category:"action",raiting:8.8},
-  //     {id:2,image:"/cuphead.jpg",title:"Cuphead",desc:"el hermoso juego viejo",category:"sports",raiting:7},
-  //     {id:3,image:"/fortnite.jpg",title:"Fortnite",desc:"juego de tiros battleRoyal",category:"shooter",raiting:6},
-  //     {id:4,image:"/cuphead.jpg",title:"Cup2",desc:"el hermoso juego viejo",category:"sports",raiting:9.2},
-  //     {id:5,image:"/counter.jpg",title:"CounterCopia",desc:"juego de tiros",category:"shooter",raiting:7.6},
-  //     {id:6,image:"/cuphead.jpg",title:"Cup3",desc:"el hermoso juego viejo",category:"shooter",raiting:5.8},
-  //     {id:7,image:"/fortnite.jpg",title:"Fortnite2",desc:"nada nada nada nada",category:"action",raiting:4.8},
-  //   ];
-  // },
 };
 </script>

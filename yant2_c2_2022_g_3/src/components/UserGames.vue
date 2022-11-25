@@ -1,5 +1,6 @@
 <template>
   <div class="center">
+    <div v-if="!(emptyGames())">
     <div v-for="game in store.logued.juegos" :key="game.id">
       <div class="card mb-3" style="max-width: 980px">
         <div class="row g-0">
@@ -22,68 +23,21 @@
                   <h6>Puntuar juego:</h6>
                 </div>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" />
-                    <label class="form-label">Puntuacion</label>
-                  <!-- <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      v-model="puntaje"
-                    />
-                    <label class="form-check-label" for="inlineRadio1">{{op[0]}}</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio2"
-                      v-model="puntaje"
-                    />
-                    <label class="form-check-label" for="inlineRadio2">{{op[1]}}</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio3"
-                      v-model="puntaje"
-                    />
-                    <label class="form-check-label" for="inlineRadio3"
-                      >{{op[2]}}</label
-                    >
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio4"
-                      v-model="puntaje"
-                    />
-                    <label class="form-check-label" for="inlineRadio4"
-                      >{{op[3]}}</label
-                    >
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio5"
-                      v-model="puntaje"
-                    />
-                    <label class="form-check-label" for="inlineRadio5"
-                      >{{op[4]}}</label
-                    >
-                  </div> -->
+                  <!-- <input v-model="puntaje[game.id]" type="text"/>
+                    <button @click="rankear(game,game.id)" class="col-sm-2 btn btn-success btn-block">Ok</button> -->
+
+                  <select v-model="puntaje[game.id]">
+                    <option disabled value="">Please select one</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
                 </div>
+
                 <button
-                  @click="rankear()"
-                  
+                  @click="rankear(game, game.id)"
                   class="col-sm-2 btn btn-success btn-block"
                 >
                   Puntuar
@@ -94,6 +48,10 @@
         </div>
       </div>
     </div>
+  </div>
+  <div v-else style="color:white">
+    <h1>You haven't games in your account</h1>
+  </div>
   </div>
 </template>
 
@@ -106,26 +64,19 @@ export default {
   },
   data() {
     return {
-      op: [1, 2, 3, 4, 5],
-      puntaje:0
+      opciones: [1, 2, 3, 4, 5],
+      puntaje: [],
     };
   },
   methods: {
-    async rankear() {
+    async rankear(game, id) {
+      game.raiting = parseInt(this.puntaje[id], 10);
       let userGames = this.store.logued.juegos;
-      await fetch(
-        `https://6380052d2f8f56e28e9a442f.mockapi.io/users/${this.store.logued.id}`,
-        {
-          method: "PUT",
-          body: JSON.stringify({
-            juegos: userGames,
-          }),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-        }
-      );
+      this.store.updateBase(userGames)
     },
+    emptyGames () {
+      return (this.store.logued.juegos).length === 0
+    }
   },
 };
 </script>

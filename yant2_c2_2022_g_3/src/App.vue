@@ -109,8 +109,8 @@ export default {
       this.$router.push(`/${categoryName}`)
     },
     logout(){
-        this.store.userLogued = null,
-        console.log(this.store.userLogued);
+        this.$router.push(`/`)
+        this.store.changeAuthLog()
     },
     async initUsersGames(){
     const usersFetch = await fetch('https://6380052d2f8f56e28e9a442f.mockapi.io/users');
