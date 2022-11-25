@@ -73,7 +73,13 @@
 </style>
 
 <script>
+import { myStore } from '../store'
+
 export default {
+  setup() {
+    const store = myStore()
+    return store
+  },
   data() {
     return {
       errors: [],
@@ -110,15 +116,16 @@ export default {
       }
 
       if (!this.errors.length) {
+        this.store.registerUser(this.firstName,this.lastName,this.email,this.fPassw)
         this.$swal(
-                    'Bien hecho!!!',
-                    'Gracias por unirte a Vaporcito',
+                    'Well done!!!',
+                    'Thanks for join us',
                     'success'
                         )
         this.$router.push("/Login");
       }
 
-      e.preventDefault();
+      // e.preventDefault();
     },
     validEmail: function (email) {
       var re =

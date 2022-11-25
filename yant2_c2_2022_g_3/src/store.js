@@ -72,7 +72,9 @@ export const myStore = defineStore('stUs',{
                   },
                 }
               );
+        },
+        async registerUser(firstName,lastName,email,password) {
+            
         }
-
     }
 });
