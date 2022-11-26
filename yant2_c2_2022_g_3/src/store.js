@@ -73,8 +73,31 @@ export const myStore = defineStore('stUs',{
                 }
               );
         },
-        async registerUser(firstName,lastName,email,password) {
-            
-        }
+        // async registerUser(fName,lName,mail,pass) {
+        //   // const userId = this.usersList.length + 1
+        //   const newUser = {
+        //     method: "POST",
+        //     headers: {
+        //       "Content-type": "application/json; charset=UTF-8"
+        //     },
+        //       body: JSON.stringify({
+        //       id: "1",
+        //       firstName: fName,
+        //       lastName: lName,
+        //       email: mail,
+        //       password: pass,
+        //       juegos: []
+        //       }),
+        //     };
+        //   console.log();
+        //   try {
+        //     const response = await fetch ('https://6380052d2f8f56e28e9a442f.mockapi.io/users',newUser)
+        //     const data = await response.json()
+        //     return data
+        //   } catch (error) {
+        //     return error
+        //   }
+
+        // }
     }
 });
