@@ -78,7 +78,7 @@ import { myStore } from '../store'
 export default {
   setup() {
     const store = myStore()
-    return store
+    return { store };
   },
   data() {
     return {
@@ -115,9 +115,9 @@ export default {
         this.errors.push("El correo electrónico debe ser válido.");
       }
       
-      // if(this.userExist(this.email)){
-      //   this.errors.push("El usuario ya existe")
-      // }
+      if(this.userExist(this.email)){
+        this.errors.push("El usuario ya existe")
+      }
 
       if (!this.errors.length) {
         await this.registerUser(this.firstName, this.lastName,this.email, this.fPassw)
@@ -131,12 +131,12 @@ export default {
 
       // e.preventDefault();
     },
-    // userExist(email) {
-    //   const result = await this.store.users.find(
-    //     (elem) => elem.email == email
-    //   );
-    //   return result;
-    // },
+    userExist(email) {
+      const result = this.store.users.find(
+        elem => elem.email === email
+      );
+      return result;
+    },
     validEmail: function (email) {
       var re =
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

@@ -18,7 +18,7 @@
                 {{ game.description }}
               </p>
               <!-- <p class="card-text"></p> -->
-              <div class="row">
+              <div v-if="game.raiting === 0" class="row">
                 <div class="col-sm-3">
                   <h6>Puntuar juego:</h6>
                 </div>
@@ -42,6 +42,13 @@
                 >
                   Puntuar
                 </button>
+              </div>
+              <div v-if="game.raiting > 0" class="row">
+                <div class="col-sm-3">
+                  <h6>Puntuación: {{game.raiting}}</h6>
+                </div>
+                <div class="col-sm-6"></div>
+                <button @click="rateAgain(game)" class="col-sm-2 btn btn-primary btn-block">Modificar</button>
               </div>
             </div>
           </div>
@@ -69,6 +76,9 @@ export default {
     };
   },
   methods: {
+    rateAgain(game){
+      game.raiting = 0
+    },
     async rankear(game, id) {
       game.raiting = parseInt(this.puntaje[id], 10);
       let userGames = this.store.logued.juegos;
@@ -79,7 +89,6 @@ export default {
       return (this.store.logued.juegos).length === 0
     },
 
-      /*  Aca pegamos los metodos */
 
       //calcular y actualizar ranking de un juego
             async updateRaitingGame(gameId) {
