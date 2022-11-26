@@ -73,11 +73,53 @@ export default {
       game.raiting = parseInt(this.puntaje[id], 10);
       let userGames = this.store.logued.juegos;
       this.store.updateBase(userGames)
-      this.store.updateRaitingGame(game.id)
+      this.updateRaitingGame(game.id)
     },
     emptyGames () {
       return (this.store.logued.juegos).length === 0
-    }
+    },
+
+      /*  Aca pegamos los metodos */
+
+      //calcular y actualizar ranking de un juego
+            async updateRaitingGame(gameId) {
+            let gameProm = 0 //variable para guardar el promedio
+            let usersWithGame = 0 //cantidad de usuarios con el juego
+            let totalUsersRaiting = 0 //puntaje total de todos los usuarios
+            //Recorro la lista de usuarios
+            this.store.users.forEach(e => {
+                 let gameFound = (e.juegos).find(g => g.id === gameId) //busco si el usuario tiene el juego
+                 if(gameFound){ //si lo tiene, actualizo el contador y acumulador
+                    usersWithGame++
+                    totalUsersRaiting += gameFound.raiting
+                 }
+            })
+            //verifico si habia usuarios con el juego y calculo el promedio
+            if(usersWithGame != 0){gameProm = totalUsersRaiting / usersWithGame} //si al menos 1 tiene el juego, hacemos el calculo
+            //actualizo la lista de juegos localmente
+            this.store.games.find(e => {
+                if(e.id === gameId){
+                    e.raiting = gameProm    
+                }
+            })
+            await this.updateBDGame(gameId,gameProm)
+        },
+        async updateBDGame(gameId,gameProm){ 
+            await fetch(
+                `https://6380052d2f8f56e28e9a442f.mockapi.io/games/${gameId}`,
+                {
+                  method: "PUT",
+                  body: JSON.stringify({
+                  raiting: gameProm,
+                  }),
+                  headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                  },
+                }
+              );
+        }
+
+    /*   Final de methods         */ 
   },
 };
 </script>
