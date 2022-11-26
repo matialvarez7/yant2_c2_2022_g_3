@@ -114,9 +114,13 @@ export default {
       } else if (!this.validEmail(this.email)) {
         this.errors.push("El correo electrónico debe ser válido.");
       }
+      
+      // if(this.userExist(this.email)){
+      //   this.errors.push("El usuario ya existe")
+      // }
 
       if (!this.errors.length) {
-        await this.registerUser('gaspar','decarlo','email@gmail.com','pepito1234')
+        await this.registerUser(this.firstName, this.lastName,this.email, this.fPassw)
         this.$swal(
                     'Well done!!!',
                     'Thanks for join us',
@@ -127,6 +131,12 @@ export default {
 
       // e.preventDefault();
     },
+    // userExist(email) {
+    //   const result = await this.store.users.find(
+    //     (elem) => elem.email == email
+    //   );
+    //   return result;
+    // },
     validEmail: function (email) {
       var re =
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -155,7 +165,7 @@ export default {
           } catch (error) {
             return error
           }
-        }
-      }
-  };
+    }
+  }
+};
 </script>
