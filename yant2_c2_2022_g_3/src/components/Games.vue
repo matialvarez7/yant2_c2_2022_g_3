@@ -69,7 +69,7 @@ export default {
     verifyPurchase(game) {
       if (!this.store.logued) {
         this.$swal(
-          "User not logued",
+          "User not loggued",
           "You must to login in order to buy",
           "warning"
         );
@@ -77,7 +77,7 @@ export default {
       } else {
         this.saveGame(game);
         this.$swal(
-          "Successful purchase!!",
+          "Purchase successful!!",
           "Thank you!!",
           "success"
         );

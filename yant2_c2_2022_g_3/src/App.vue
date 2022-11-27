@@ -1,14 +1,4 @@
 <template>
-  <!-- Background image -->
-  <!-- <div
-  class="bg-size"
-  style="
-    background-image: url('/fondo4.png');
-    height: 140vh; background-size:100% 100%;
-    background-repeat: repeat;
-  "
-> -->
-
   <div id="app">
     <div class="background">
     <nav class="container navbar navbar-expand-lg bg-dark">
@@ -51,7 +41,8 @@
     </ul>
 </div>
 
-<!-- SideBar Ranking    -->
+                <!-- SideBar User   -->
+
    <div class="container-fluid"> 
     <div class="row"> 
   <div class="sidebar col-3" v-if="(store.logued)"><app-userLogued></app-userLogued></div>
@@ -60,8 +51,9 @@
   
   </div>
   <br>
-
   </div>
+                  <!-- Footer   -->
+
   <div class="footPers container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <p class="textFoot col-md-4 mb-0 text-muted">© 2022 Company, Inc</p>
@@ -79,6 +71,8 @@
     </ul>
   </footer>
 </div>
+                                <!-- Footer END  -->
+
   </div>
   </div>
 </template>
@@ -96,16 +90,11 @@ export default {
   },
   data () {
     return {
-    //  topFive: [],
     }
   },
   methods: {
-    // getTopFive () {
-    //     let orderList = this.store.games.sort((a,b) => b.raiting - a.raiting)
-    //     this.topFive = orderList.filter((e,i) => i < 5)
-    // },
-    goTo(categoryName){    
-      this.$router.push(`/${categoryName}`)
+    goTo(route){
+      this.$router.push(route)
     },
     logout(){
         this.$router.push(`/`)
@@ -113,28 +102,20 @@ export default {
     },
     async initUsersGames(){
     await this.store.initUsers()
-    // const usersFetch = await fetch('https://6380052d2f8f56e28e9a442f.mockapi.io/users');
     const gamesFetch = await fetch('https://6380052d2f8f56e28e9a442f.mockapi.io/games')
-    // const usersData = await usersFetch.json();
     const gamesData = await gamesFetch.json();
-    // this.store.usersList = usersData;
     this.store.gamesList = gamesData;
     this.store.getTopFive()
     }
   },
   async mounted(){
-   this.initUsersGames()
+   await this.initUsersGames()
   },
 };
 </script>
 
 
 <style scoped>
-/* SideBar 
-.sidebar {
-   position: absolute;
-  top: 200px; 
-} */
 
 .background {
   background-image: url('/fondo6.jpg');
@@ -149,8 +130,6 @@ export default {
   width: 100%;
   height: 150vh;
 }
-
-
 
 .imgLogo {
   width: 100px;

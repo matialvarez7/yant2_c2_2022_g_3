@@ -2,16 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 // import './assets/main.css'
-// import Action from './components/Action.vue';
-// import Sports from './components/Sports.vue';
 import Games from './components/Games.vue';
 import Banner from './components/Banner.vue';
 import Login from './components/Login.vue';
 import Register from './components/Register.vue';
 import Home from './components/Home.vue'
 import UserGames from './components/UserGames.vue'
-
-
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js"

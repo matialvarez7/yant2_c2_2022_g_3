@@ -171,16 +171,6 @@ export default {
   left: 600px;
 }
 
-/* .carTitle {
-  font-size: 50px;
-  font-family: optima, sans-serif;
-  text-align: center;
-  color:rgb(217, 215, 215);
-  position: absolute;
-  bottom: 110px;
-  cursor: pointer
-} */
-
 .carrBot {
   position: absolute;
   bottom: 150px;

@@ -2,7 +2,7 @@
 <div>
 <!--class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register"-->
     <form @submit="formValidate"
-    novalidate="true">
+         novalidate="true">
   <!-- 2 column grid layout with text inputs for the first and last names -->
       <div class="container row">
         <div class="col-md-8"></div>
@@ -45,7 +45,7 @@
 
                 <!-- Errors -->
                 <div class="errores">
-                <p v-if="errors.length">
+                <p v-if="(this.errors.length) > 0">
                 <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
                 <ul>
                 <li  v-for="error in errors" :key="error.id">{{ error }}</li>
@@ -129,7 +129,7 @@ export default {
                     'Thanks for joining us',
                     'success'
                         )
-        this.store.initUsers()
+        await this.store.initUsers()
         this.$router.push("/Login");
       }
 
