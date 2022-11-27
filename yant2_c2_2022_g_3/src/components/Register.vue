@@ -126,9 +126,10 @@ export default {
         await this.registerUser(this.firstName, this.lastName,this.email, this.fPassw)
         this.$swal(
                     'Well done!!!',
-                    'Thanks for join us',
+                    'Thanks for joining us',
                     'success'
                         )
+        this.store.initUsers()
         this.$router.push("/Login");
       }
 
@@ -146,7 +147,6 @@ export default {
       return re.test(email);
     },
     async registerUser(fName,lName,mail,pass) {
-          // const userId = this.usersList.length + 1
           const newUser = {
             method: "POST",
             headers: {

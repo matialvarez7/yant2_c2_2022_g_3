@@ -19,6 +19,11 @@ export const myStore = defineStore('stUs',{
         logued:(state) => state.userLogued,
     },
     actions:{
+      async initUsers () {
+        const usersFetch = await fetch('https://6380052d2f8f56e28e9a442f.mockapi.io/users');
+        const usersData = await usersFetch.json();
+        this.usersList = usersData;
+      },
       getTopFive () {
         let orderList = this.gamesList.sort((a,b) => b.raiting - a.raiting)
         this.topFive = orderList.filter((e,i) => i < 5)

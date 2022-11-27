@@ -105,7 +105,7 @@ export default {
         this.$swal({
   position: 'top-end',
   icon: 'success',
-  title: 'Login Success',
+  title: 'Login Successful',
   showConfirmButton: false,
   timer: 1500
 })

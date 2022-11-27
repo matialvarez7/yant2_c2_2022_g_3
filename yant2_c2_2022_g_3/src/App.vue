@@ -112,11 +112,12 @@ export default {
         this.store.changeAuthLog()
     },
     async initUsersGames(){
-    const usersFetch = await fetch('https://6380052d2f8f56e28e9a442f.mockapi.io/users');
+    await this.store.initUsers()
+    // const usersFetch = await fetch('https://6380052d2f8f56e28e9a442f.mockapi.io/users');
     const gamesFetch = await fetch('https://6380052d2f8f56e28e9a442f.mockapi.io/games')
-    const usersData = await usersFetch.json();
+    // const usersData = await usersFetch.json();
     const gamesData = await gamesFetch.json();
-    this.store.usersList = usersData;
+    // this.store.usersList = usersData;
     this.store.gamesList = gamesData;
     this.store.getTopFive()
     }
