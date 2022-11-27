@@ -3,7 +3,7 @@
   <div
   class="bg-size"
   style="
-    background-image: url('/fondo2.jpg');
+    background-image: url('/fondo1.jpg');
     height: 150vh; background-size:100% 100%;
     background-repeat: repeat;
   "
@@ -11,7 +11,8 @@
   <div id="app">
     <nav class="container navbar navbar-expand-lg bg-dark">
       <div class="container-fluid">
-    <div class="textoNav">Vaporcito</div>
+    <!-- <div class="textoNav">Vaporcito</div> -->
+    <img class="imgLogo" src="/logo.jpg" alt="">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
@@ -37,12 +38,11 @@
 
    <!-- SideBar Ranking    -->
    <div class="sidebarRanking d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+    <div  class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <span class="fs-4">Ranking</span>
-    </a>
+    </div>
     <hr>
-    <ul v-for="(game, index) in this.topFive" :key="index" class="nav nav-pills flex-column mb-auto">
+    <ul v-for="(game, index) in this.store.topFive" :key="index" class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
       <h5>{{index+1}} {{game.title}} {{game.raiting}}</h5>
       </li>
@@ -94,14 +94,14 @@ export default {
   },
   data () {
     return {
-     topFive: [],
+    //  topFive: [],
     }
   },
   methods: {
-    getTopFive () {
-        let orderList = this.store.games.sort((a,b) => b.raiting - a.raiting)
-        this.topFive = orderList.filter((e,i) => i < 5)
-    },
+    // getTopFive () {
+    //     let orderList = this.store.games.sort((a,b) => b.raiting - a.raiting)
+    //     this.topFive = orderList.filter((e,i) => i < 5)
+    // },
     goTo(categoryName){    
       this.$router.push(`/${categoryName}`)
     },
@@ -116,7 +116,7 @@ export default {
     const gamesData = await gamesFetch.json();
     this.store.usersList = usersData;
     this.store.gamesList = gamesData;
-    this.getTopFive()
+    this.store.getTopFive()
     }
   },
   async mounted(){
@@ -133,6 +133,10 @@ export default {
   top: 200px; 
 } */
 
+.imgLogo {
+  width: 100px;
+}
+
 .sidebarRanking {
   position: absolute;
   left: 98rem;
@@ -142,8 +146,8 @@ export default {
 
 .textoNav {
   margin-right: 1rem;
-  font-size:2rem;
-  color:rgb(248, 248, 248);
+  /* font-size:2rem;
+  color:rgb(248, 248, 248); */
 }
 
 .desplegable {

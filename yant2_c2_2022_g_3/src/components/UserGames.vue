@@ -1,5 +1,7 @@
 <template>
-  <div class="center">
+  <div class="container-fluid">
+    <div class="row">
+    <div class="col-sm-8" ></div>
     <div v-if="!(emptyGames())">
     <div v-for="game in store.logued.juegos" :key="game.id">
       <div class="card mb-3" style="max-width: 980px">
@@ -60,6 +62,7 @@
     <h1>You haven't games in your account</h1>
   </div>
   </div>
+  </div>
 </template>
 
 <script>
@@ -84,6 +87,7 @@ export default {
       let userGames = this.store.logued.juegos;
       this.store.updateBase(userGames)
       this.updateRaitingGame(game.id)
+      this.store.getTopFive()
     },
     emptyGames () {
       return (this.store.logued.juegos).length === 0

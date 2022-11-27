@@ -9,7 +9,8 @@ export const myStore = defineStore('stUs',{
             {id:3,name:"Shooter"},
             ],
             usersList:[],
-            gamesList:[]
+            gamesList:[],
+            topFive: []
     }),
     getters:{
         getCategory:(state) => state.category,
@@ -18,6 +19,10 @@ export const myStore = defineStore('stUs',{
         logued:(state) => state.userLogued,
     },
     actions:{
+      getTopFive () {
+        let orderList = this.gamesList.sort((a,b) => b.raiting - a.raiting)
+        this.topFive = orderList.filter((e,i) => i < 5)
+              },
         changeAuthLog () {
             this.userLogued = !this.userLogued
         },
