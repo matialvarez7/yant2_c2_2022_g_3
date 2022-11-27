@@ -8,7 +8,6 @@
     background-repeat: repeat;
   "
 >
-
   <div id="app">
     <nav class="container navbar navbar-expand-lg bg-dark">
       <div class="container-fluid">
@@ -22,11 +21,6 @@
           <a class="desplegable nav-link" role="button"  aria-expanded="false"  @click="goTo('games')">
             Games
           </a>
-          <!-- <ul class="dropdown-menu">
-            <li><a v-for="(categ) in store.category" :key="categ.id" 
-            @click="goTo('games')"
-            class="dropdown-item" style="cursor: pointer" >Games</a></li>
-          </ul> -->
         </li>
        
       </ul>
@@ -41,22 +35,21 @@
     </nav>
       <br>
 
-      <!-- <div>
-      <ul>
-      <li v-for="user in store.users" :key="user.id" class="desplegable" >
-          {{user.firstName}}
+   <!-- SideBar Ranking    -->
+   <div class="sidebarRanking d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+      <span class="fs-4">Ranking</span>
+    </a>
+    <hr>
+    <ul v-for="(game, index) in this.topFive" :key="index" class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+      <h5>{{index+1}} {{game.title}} {{game.raiting}}</h5>
       </li>
-      </ul>
-      </div>
+    </ul>
+</div>
 
-      <div>
-      <ul>
-      <li v-for="game in store.games" :key="game.id" class="desplegable" >
-          {{game.image}}
-      </li>
-      </ul>
-      </div> -->
-    
+<!-- SideBar Ranking    -->
    <div class="container-fluid"> 
     <div class="row"> 
   <div class="sidebar col-3" v-if="(store.logued)"><app-userLogued></app-userLogued></div>
@@ -101,10 +94,14 @@ export default {
   },
   data () {
     return {
-      // category: [],
+     topFive: [],
     }
   },
   methods: {
+    getTopFive () {
+        let orderList = this.store.games.sort((a,b) => b.raiting - a.raiting)
+        this.topFive = orderList.filter((e,i) => i < 5)
+    },
     goTo(categoryName){    
       this.$router.push(`/${categoryName}`)
     },
@@ -119,15 +116,10 @@ export default {
     const gamesData = await gamesFetch.json();
     this.store.usersList = usersData;
     this.store.gamesList = gamesData;
+    this.getTopFive()
     }
   },
-  mounted(){
-  //  this.category = this.store.category
-    // this.category = [
-    //   {id:1,name:"Action"},
-    //   {id:2,name:"Sports"},
-    //   {id:3,name:"Shooter"},
-    // ];
+  async mounted(){
    this.initUsersGames()
   },
 };
@@ -140,6 +132,11 @@ export default {
    position: absolute;
   top: 200px; 
 } */
+
+.sidebarRanking {
+  position: absolute;
+  left: 98rem;
+}
 
 /* NavBar style */
 

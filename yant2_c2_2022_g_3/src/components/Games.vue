@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div class="tarjetitas"><h2>Games</h2></div>
+    <div class="tarjetitasTitle"><h1>Games</h1></div>
     <br /><br />
     <div class="tarjetitas row row-cols-1 row-cols-md-3 g-4">
       <div v-for="game in store.games" :key="game.id" class="col">
@@ -35,14 +35,21 @@
 </template>
 
 <style scoped>
-h2 {
+h1 {
   font-family: proximanova, arial, sans-serif;
   color: antiquewhite;
 }
 
 .tarjetitas {
-  position: relative;
+  position: absolute;
+  max-width: 55vw !important;
+  top:160px;
   left: 400px;
+}
+
+.tarjetitasTitle {
+  position: absolute;
+  left: 800px;
 }
 </style>
 

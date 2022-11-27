@@ -7,6 +7,9 @@
       <div class="container row">
         <div class="col-md-8"></div>
         <div class="col-md-4">
+          <div class="text-center mb-3" style="color:white">
+        <h3>Register</h3>
+      </div>
         <div class="nombreApe row">
             <div class="col">
                 <div class="form-outline">

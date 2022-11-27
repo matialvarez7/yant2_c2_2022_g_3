@@ -1,13 +1,13 @@
 <template>
 <div class="row text">
-    <div class="col-4"></div>
+    <div class="col-8"></div>
     <div class="col-4">
       <div class=" tab-content">
   <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
     <form @submit="loginValidate"
           novalidate="true">
       <div class="text-center mb-3">
-        <p>Sign in:</p>
+        <h3>Sign in:</h3>
       </div>
 
       <!-- Email input -->
