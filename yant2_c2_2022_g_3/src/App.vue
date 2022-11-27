@@ -1,14 +1,16 @@
 <template>
   <!-- Background image -->
-  <div
+  <!-- <div
   class="bg-size"
   style="
-    background-image: url('/fondo1.jpg');
-    height: 150vh; background-size:100% 100%;
+    background-image: url('/fondo4.png');
+    height: 140vh; background-size:100% 100%;
     background-repeat: repeat;
   "
->
+> -->
+
   <div id="app">
+    <div class="background">
     <nav class="container navbar navbar-expand-lg bg-dark">
       <div class="container-fluid">
     <!-- <div class="textoNav">Vaporcito</div> -->
@@ -133,6 +135,22 @@ export default {
   top: 200px; 
 } */
 
+.background {
+  background-image: url('/fondo4.png');
+  background-size: cover;
+
+/* Set rules to fill background */
+  min-height: 100%;
+  max-height: 200vh;
+  min-width: 1080px;
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: 150vh;
+}
+
+
+
 .imgLogo {
   width: 100px;
 }
@@ -192,7 +210,7 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 .footPers {
   position: absolute;
   left: 13rem;
-  top: 80rem;
+  top: 1330px;
 }
 
 a.textFoot {
