@@ -136,7 +136,7 @@ export default {
 } */
 
 .background {
-  background-image: url('/fondo4.png');
+  background-image: url('/fondo6.jpg');
   background-size: cover;
 
 /* Set rules to fill background */

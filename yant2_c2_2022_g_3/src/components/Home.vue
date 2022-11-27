@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="mainTitulo display-2"><b>Vaporcito Games</b></p>
+    <p class="mainTitulo display-1"><b>Vaporcito</b></p>
 
     <!-- Carousel de noticias -->
 
@@ -159,7 +159,7 @@ export default {
   text-shadow: 1px 1px 1px red, 2px 2px 1px red;
   position: absolute;
   top: 73px;
-  left: 670px;
+  left: 760px;
 }
 
 /* Style Carousel Category */
